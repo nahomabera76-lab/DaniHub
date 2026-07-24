@@ -1,1 +1,1 @@
-Create bot.py
+print("Dani Hub Bot is starting...")
