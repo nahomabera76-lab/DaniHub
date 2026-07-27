@@ -57,15 +57,71 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     name = user.first_name
 
-    message = f"""
-🕊️ በጌታ የተወደድክ/የተወደድሽ ወንድም/እህት {name}
+    async def about_ministry(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-እንኳን ወደ DANI HUB MINISTRY 🌐
-በሰላም መጣህ/መጣሽ።
+    about_text = """
+🕊️ DANI HUB MINISTRY 🌐
 
-🙏 ለመቀጠል እባክዎ የDANI HUB MINISTRY
-ዋና ቻናሎቻችንን ይቀላቀሉ።
+ዲጂታል የፕሮቴስታንት ክርስቲያን አገልግሎት
+
+DANI HUB MINISTRY 🌐 በ2018 ዓ.ም.
+በወንድም ዳኒኤል አበራ የተመሰረተ
+የፕሮቴስታንት ክርስቲያን
+ዲጂታል አገልግሎት ነው።
+
+🌐 ራዕያችን:
+
+በቴክኖሎጂ እየተጠቀምን የእግዚአብሔርን
+ቃል ለብዙዎች ማድረስ፣
+ሕይወቶችን በክርስቶስ ፍቅር
+ማበረታታት እና የመንፈሳዊ
+ድጋፍ ማቅረብ ነው።
+
+
+🎯 ተልዕኳችን:
+
+📖 የእግዚአብሔርን ቃል ማስፋፋት
+
+🙏 የጸሎት ድጋፍ መስጠት
+
+🎶 መንፈሳዊ መዝሙሮችን
+ማቅረብ
+
+🛐 የሕይወት ምስክርነት
+ማካፈል
+
+⛓️ ከሱስ ነፃ ለመውጣት
+መንፈሳዊ ድጋፍ መስጠት
+
+
+🙏 በDANI HUB MINISTRY 🌐
+ማግኘት የሚችሉት:
+
+📖 የዕለቱ ቃል
+
+🙏 የጸሎት ጥያቄ
+
+🎶 መዝሙሮች
+
+🛐 የሕይወት ምስክርነት
+
+⛓️ ከሱስ ነፃ ለመውጣት
+
+🤝 አገልግሎቱን መደገፍ
+
+
+📖 "ሂዱና ወደ ዓለም ሁሉ
+ወንጌልን ስበኩ።"
+
+— ማርቆስ 16፥15
+
+❤️ DANI HUB MINISTRY 🌐
+እግዚአብሔርን ማገልገል
+• ተስፋን ማድረስ
+• እምነትን መገንባት
 """
+
+    await update.message.reply_text(about_text)
 
 
     buttons = []
