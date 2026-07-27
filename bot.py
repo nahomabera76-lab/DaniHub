@@ -1,55 +1,185 @@
-from telegram import Update, ReplyKeyboardMarkup
-from telegram.ext import Application, CommandHandler, MessageHandler, ContextTypes, filters
+from telegram import (
+    Update,
+    ReplyKeyboardMarkup,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup
+)
+
+from telegram.ext import (
+    Application,
+    CommandHandler,
+    MessageHandler,
+    CallbackQueryHandler,
+    ContextTypes,
+    filters
+)
+
 from config import BOT_TOKEN
 
-keyboard = [
-    ["📖 የዛሬ ጥቅስ", "🙏 የጸሎት ጥያቄ"],
-    ["📢 ቻናሎቻችን", "🌍 ቋንቋ"],
-    ["💰 ገቢ ያግኙ", "👥 የግብዣ ሊንክ"],
-    ["ℹ️ ስለ Dani Hub", "📞 አስተዳዳሪ"]
+
+# =========================
+# CHANNELS
+# =========================
+
+CHANNELS = [
+    ("🕊️ ቃሉን አነባለሁ", "@kalun_anebalew"),
+    ("🎵 ቅኔ ለእግዚአብሔር", "@getami_daniel"),
+    ("🌅 መንፈስ ቅዱስ", "@morning_messages1")
 ]
+
+
+# =========================
+# MAIN MENU
+# =========================
+
+keyboard = [
+    ["📖 የዕለቱ ቃል", "🙏 የጸሎት ጥያቄ"],
+    ["🎶 መዝሙሮች", "🛐 የሕይወት ምስክርነት"],
+    ["⛓️ ከሱስ ነፃ ለመውጣት"],
+    ["🌍 ቋንቋ", "🤝 አገልግሎቱን ይደግፉ"],
+    ["💰 ገቢ ያግኙ", "ℹ️ ስለ Dani Hub Ministry"],
+    ["📞 አስተዳዳሪ"]
+]
+
 
 reply_markup = ReplyKeyboardMarkup(
     keyboard,
     resize_keyboard=True
 )
 
+
+# =========================
+# START
+# =========================
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    user = update.effective_user
+    name = user.first_name
+
+    message = f"""
+🕊️ በጌታ የተወደድክ/የተወደድሽ ወንድም/እህት {name}
+
+እንኳን ወደ DANI HUB MINISTRY 🌐
+በሰላም መጣህ/መጣሽ።
+
+🙏 ለመቀጠል እባክዎ የDANI HUB MINISTRY
+ዋና ቻናሎቻችንን ይቀላቀሉ።
+"""
+
+
+    buttons = []
+
+    for title, channel in CHANNELS:
+        buttons.append(
+            [
+                InlineKeyboardButton(
+                    title,
+                    url=f"https://t.me/{channel.replace('@','')}"
+                )
+            ]
+        )
+
+    buttons.append(
+        [
+            InlineKeyboardButton(
+                "✅ ተቀላቅያለሁ",
+                callback_data="verify"
+            )
+        ]
+    )
+
+
     await update.message.reply_text(
-        "🕊️ እንኳን ወደ Dani Hub በደህና መጡ!\n\nከታች ካሉት አዝራሮች አንዱን ይምረጡ።",
+        message,
+        reply_markup=InlineKeyboardMarkup(buttons)
+    )
+
+
+# =========================
+# VERIFY CHANNELS
+# =========================
+
+async def verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
+    query = update.callback_query
+    user = query.from_user
+
+    await query.answer()
+
+    for _, channel in CHANNELS:
+
+        member = await context.bot.get_chat_member(
+            chat_id=channel,
+            user_id=user.id
+        )
+
+        if member.status == "left":
+
+            await query.message.reply_text(
+                "⚠️ እባክዎ ሁሉንም ቻናሎች ይቀላቀሉ።"
+            )
+
+            return
+
+
+    await query.message.reply_text(
+        "🙏 እናመሰግናለን!\n\n"
+        "አሁን የDANI HUB MINISTRY 🌐 "
+        "አገልግሎቶችን መጠቀም ይችላሉ።",
         reply_markup=reply_markup
     )
 
+
+# =========================
+# BUTTONS
+# =========================
+
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
+
     text = update.message.text
 
-    if text == "📖 የዛሬ ጥቅስ":
-        await update.message.reply_text("📖 ይህ በኋላ የዕለቱን የመጽሐፍ ቅዱስ ጥቅስ ያሳያል።")
+
+    if text == "📖 የዕለቱ ቃል":
+        await update.message.reply_text(
+            "📖 የዕለቱ ቃል በቅርቡ ይጨመራል።"
+        )
+
 
     elif text == "🙏 የጸሎት ጥያቄ":
-        await update.message.reply_text("🙏 የጸሎት ጥያቄዎን ይላኩ።")
+        await update.message.reply_text(
+            "🙏 የጸሎት አገልግሎት በቅርቡ ይጨመራል።"
+        )
 
-    elif text == "📢 ቻናሎቻችን":
-        await update.message.reply_text("📢 በኋላ የቻናሎቻችን ሊንኮች ይታያሉ።")
 
-    elif text == "🌍 ቋንቋ":
-        await update.message.reply_text("🌍 በኋላ ቋንቋ መቀየሪያ ይጨመራል።")
+    else:
+        await update.message.reply_text(
+            "🙏 ይህ አገልግሎት በማዘጋጀት ላይ ነው።"
+        )
 
-    elif text == "💰 ገቢ ያግኙ":
-        await update.message.reply_text("💰 የሪፈራል ስርዓት በቅርቡ ይጨመራል።")
 
-    elif text == "👥 የግብዣ ሊንክ":
-        await update.message.reply_text("👥 የሪፈራል ሊንክዎ በቅርቡ ይታያል።")
-
-    elif text == "ℹ️ ስለ Dani Hub":
-        await update.message.reply_text("ℹ️ Dani Hub የክርስቲያን መንፈሳዊ ቦት ነው።")
-
-    elif text == "📞 አስተዳዳሪ":
-        await update.message.reply_text("📞 @mr_dani10")
+# =========================
+# RUN
+# =========================
 
 app = Application.builder().token(BOT_TOKEN).build()
 
-app.add_handler(CommandHandler("start", start))
-app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, buttons))
+app.add_handler(
+    CommandHandler("start", start)
+)
+
+app.add_handler(
+    CallbackQueryHandler(verify, pattern="verify")
+)
+
+app.add_handler(
+    MessageHandler(
+        filters.TEXT & ~filters.COMMAND,
+        buttons
+    )
+)
+
+
+print("DANI HUB MINISTRY BOT STARTED")
 
 app.run_polling()
