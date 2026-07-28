@@ -20,7 +20,7 @@ from config import BOT_TOKEN
 
 CHANNELS
 
-==========================
+#==========================
 
 CHANNELS = [
 ("🕊️ ቃሉን አነባለሁ", "@kalun_anebalew"),
@@ -28,11 +28,11 @@ CHANNELS = [
 ("🌅 መንፈስ ቅዱስ", "@morning_messages1"),
 ]
 
-==========================
+#==========================
 
 MAIN MENU
 
-==========================
+#==========================
 
 keyboard = [
 ["📖 የዕለቱ ቃል", "🙏 የጸሎት ጥያቄ"],
@@ -48,11 +48,11 @@ keyboard,
 resize_keyboard=True
 )
 
-==========================
+#==========================
 
 START
 
-==========================
+#==========================
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -106,11 +106,11 @@ await update.message.reply_text(
     reply_markup=InlineKeyboardMarkup(buttons)  
 )
 
-==========================
+#==========================
 
 VERIFY
 
-==========================
+#==========================
 
 async def verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -140,11 +140,11 @@ await query.message.reply_text(
     reply_markup=reply_markup  
 )
 
-==========================
+#==========================
 
 ABOUT MINISTRY
 
-==========================
+#==========================
 
 async def about(update: Update):
 
@@ -253,11 +253,11 @@ DANI HUB MINISTRY 🌐
 
 await update.message.reply_text(text)
 
-==========================
+#==========================
 
 BUTTONS
 
-==========================
+#==========================
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -316,11 +316,11 @@ else:
         "🙏 እባክዎ ከሜኑ ውስጥ አንዱን ይምረጡ።"  
     )
 
-==========================
+#==========================
 
 BOT START
 
-==========================
+#==========================
 
 app = Application.builder().token(BOT_TOKEN).build()
 
