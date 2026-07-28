@@ -18,7 +18,7 @@ from config import BOT_TOKEN
 
 #==========================
 
-CHANNELS
+#CHANNELS
 
 #==========================
 
@@ -30,7 +30,7 @@ CHANNELS = [
 
 #==========================
 
-MAIN MENU
+#MAIN MENU
 
 #==========================
 
@@ -50,7 +50,7 @@ resize_keyboard=True
 
 #==========================
 
-START
+#START
 
 #==========================
 
@@ -108,7 +108,7 @@ await update.message.reply_text(
 
 #==========================
 
-VERIFY
+#VERIFY
 
 #==========================
 
@@ -142,7 +142,7 @@ await query.message.reply_text(
 
 #==========================
 
-ABOUT MINISTRY
+#ABOUT MINISTRY
 
 #==========================
 
@@ -255,7 +255,7 @@ await update.message.reply_text(text)
 
 #==========================
 
-BUTTONS
+#BUTTONS
 
 #==========================
 
@@ -318,7 +318,7 @@ else:
 
 #==========================
 
-BOT START
+#BOT START
 
 #==========================
 
