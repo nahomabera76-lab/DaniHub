@@ -56,8 +56,8 @@ resize_keyboard=True
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
-user = update.effective_user  
-name = user.first_name  
+    user = update.effective_user
+    name = user.first_name
 
 welcome = f"""
 
