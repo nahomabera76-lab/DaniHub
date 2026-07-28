@@ -103,7 +103,7 @@ async def verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
             user_id=user.id
         )
 
-       if member.status in ["left", "kicked"]:
+        if member.status in ["left", "kicked"]:
 
             await query.message.reply_text(
                 "⚠️ እባክዎ መጀመሪያ ሁሉንም ቻናሎች ይቀላቀሉ።"
