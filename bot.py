@@ -38,6 +38,8 @@ reply_markup = ReplyKeyboardMarkup(
     keyboard,
     resize_keyboard=True
 )
+
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     user = update.effective_user
@@ -86,7 +88,6 @@ DANI HUB MINISTRY 🌐
         reply_markup=InlineKeyboardMarkup(buttons)
     )
 
-
 async def verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     query = update.callback_query
@@ -116,6 +117,8 @@ async def verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "አሁን መጠቀም ይችላሉ።",
         reply_markup=reply_markup
     )
+
+
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = """
@@ -161,7 +164,6 @@ DANI HUB MINISTRY 🌐 በ2018 ዓ.ም.
 
 
     await update.message.reply_text(text)
-
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
@@ -210,6 +212,8 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif text == "ℹ️ ስለ Dani Hub Ministry":
 
         await about(update, context)
+
+
     elif text == "🌍 ቋንቋ":
 
         await update.message.reply_text(
@@ -220,7 +224,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif text == "🤝 አገልግሎቱን ይደግፉ":
 
         await update.message.reply_text(
-            "🤝 DANI HUB MINISTRY 🌐ን ለመደገፍ የሚያስችል "
+            "🤝 DANI HUB MINISTRY 🌐ን ለመደገፍ "
             "መረጃ በቅርቡ ይላካል።"
         )
 
@@ -228,8 +232,9 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     elif text == "💰 ገቢ ያግኙ":
 
         await update.message.reply_text(
-            "💰 ሌሎችን ወደ DANI HUB MINISTRY 🌐 በመጋበዝ "
-            "የሪፈራል ሽልማት የሚያገኙበት ስርዓት ነው።"
+            "💰 ሌሎችን ወደ DANI HUB MINISTRY 🌐 "
+            "በመጋበዝ የሪፈራል ሽልማት "
+            "የሚያገኙበት ስርዓት ነው።"
         )
 
 
@@ -247,12 +252,14 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "🙏 እባክዎ ከሜኑ ውስጥ አንዱን ይምረጡ።"
         )
 
-
 app = Application.builder().token(BOT_TOKEN).build()
 
 
 app.add_handler(
-    CommandHandler("start", start)
+    CommandHandler(
+        "start",
+        start
+    )
 )
 
 
