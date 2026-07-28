@@ -1,3 +1,19 @@
+from flask import Flask
+from threading import Thread
+
+app_web = Flask(__name__)
+
+@app_web.route("/")
+def home():
+    return "DANI HUB MINISTRY BOT is running!"
+
+def run_web():
+    app_web.run(host="0.0.0.0", port=10000)
+
+def keep_alive():
+    t = Thread(target=run_web)
+    t.start()
+
 from telegram import (
     Update,
     ReplyKeyboardMarkup,
