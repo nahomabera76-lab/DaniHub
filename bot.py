@@ -16,7 +16,7 @@ filters
 
 from config import BOT_TOKEN
 
-==========================
+#==========================
 
 CHANNELS
 
