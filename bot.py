@@ -37,7 +37,8 @@ keyboard = [
 reply_markup = ReplyKeyboardMarkup(
     keyboard,
     resize_keyboard=True
-)async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+)
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     user = update.effective_user
     name = user.first_name
@@ -114,7 +115,8 @@ async def verify(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "DANI HUB MINISTRY 🌐 አገልግሎቶችን "
         "አሁን መጠቀም ይችላሉ።",
         reply_markup=reply_markup
-    )async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    )
+async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     text = """
 🕊️ DANI HUB MINISTRY 🌐
