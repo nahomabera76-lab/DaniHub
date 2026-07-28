@@ -298,4 +298,5 @@ app.add_handler(
 print("🕊️ DANI HUB MINISTRY BOT STARTED")
 
 
+keep_alive()
 app.run_polling()
